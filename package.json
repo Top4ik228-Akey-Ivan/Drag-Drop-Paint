@@ -1,0 +1,14 @@
+{
+  "name": "hh-school-browser-api",
+  "version": "1.0.0",
+  "description": "Домашнее задание по AJAX 2",
+  "main": "index.js",
+  "scripts": {
+    "server": "node ./server/app.js"
+  },
+  "author": "Maksim Gatilin",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
