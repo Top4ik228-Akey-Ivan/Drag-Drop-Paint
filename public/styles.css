@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+}
+
+.main {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+.box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin-top: 100px;
+}
+
+.draggable {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(51, 176, 155);
+    cursor: grab;
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+.container {
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#container1{
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+}
