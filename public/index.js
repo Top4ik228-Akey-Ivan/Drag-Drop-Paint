@@ -17,22 +17,35 @@ document.addEventListener('DOMContentLoaded', () => {
         y: draggable.getBoundingClientRect().top
     };
 
-    draggable.addEventListener('mousedown', (e) => {
+    // Функция для начала перетаскивания
+    function startDragging(e) {
         isDragging = true;
         draggable.style.cursor = 'grabbing';
-        offsetX = e.clientX - draggable.getBoundingClientRect().left;
-        offsetY = e.clientY - draggable.getBoundingClientRect().top;
-    });
+        
+        // Определяем координаты касания или мыши
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-    document.addEventListener('mousemove', (e) => {
+        offsetX = clientX - draggable.getBoundingClientRect().left;
+        offsetY = clientY - draggable.getBoundingClientRect().top;
+    }
+
+    // Функция для перемещения элемента
+    function dragElement(e) {
         if (isDragging) {
             draggable.style.position = 'absolute';
-            draggable.style.left = `${e.clientX - offsetX}px`;
-            draggable.style.top = `${e.clientY - offsetY}px`;
-        }
-    });
 
-    document.addEventListener('mouseup', () => {
+            // Определяем координаты касания или мыши
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            draggable.style.left = `${clientX - offsetX}px`;
+            draggable.style.top = `${clientY - offsetY}px`;
+        }
+    }
+
+    // Функция для завершения перетаскивания
+    function stopDragging() {
         if (isDragging) {
             const rectDraggable = draggable.getBoundingClientRect();
             const rectContainer1 = container1.getBoundingClientRect();
@@ -63,24 +76,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 rectDraggable.y + rectDraggable.height <= rectContainer2.y + rectContainer2.height
             ) {
                 if (container2.children.length < 9) {
-                    const newBlock = draggable.cloneNode(true); // Клонируем с содержимым 
+                    const newBlock = draggable.cloneNode(true); // Клонируем с содержимым  
                     newBlock.style.backgroundColor = getRandomHexColor();
                     newBlock.style.position = 'absolute';
-                    newBlock.style.left = `${rectDraggable.left - rectContainer2.left}px`; // Устанавливаем позицию относительно контейнера
-                    newBlock.style.top = `${rectDraggable.top - rectContainer2.top}px`; // Устанавливаем позицию относительно контейнера
+                    newBlock.style.left = `${rectDraggable.left - rectContainer2.left}px`; // Устанавливаем позицию относительно контейнера 
+                    newBlock.style.top = `${rectDraggable.top - rectContainer2.top}px`; // Устанавливаем позицию относительно контейнера 
                     container2.appendChild(newBlock);
-                } else {
-                    alert('Контейнер номер 2 переполнен');
+                } else {                    alert('Контейнер номер 2 переполнен');
                 }
             }
 
-            // Сброс флага перетаскивания 
+            // Сброс флага перетаскивания  
             isDragging = false;
             draggable.style.cursor = 'grab';
-            // Возврат на исходное место
+            // Возврат на исходное место 
             draggable.style.position = 'absolute';
             draggable.style.left = `${startPosition.x}px`;
             draggable.style.top = `${startPosition.y}px`;
         }
-    });
+    }
+
+    // Обработка событий мыши
+    draggable.addEventListener('mousedown', startDragging);
+    document.addEventListener('mousemove', dragElement);
+    document.addEventListener('mouseup', stopDragging);
+
+    // Обработка событий касания для сенсорных устройств
+    draggable.addEventListener('touchstart', startDragging);
+    document.addEventListener('touchmove', dragElement);
+    document.addEventListener('touchend', stopDragging);
 });
