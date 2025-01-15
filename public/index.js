@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const container1 = document.getElementById('container1');
     const container2 = document.getElementById('container2');
 
+    draggable.style.background = getRandomHexColor()
+
     let isDragging = false;
     let offsetX, offsetY;
 
@@ -60,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ) {
                 if (container1.children.length < 9) {
                     const newBlock = draggable.cloneNode(true); // Клонируем с содержимым
-                    newBlock.style.backgroundColor = getRandomHexColor();
                     newBlock.style.position = 'static';
                     container1.appendChild(newBlock);
                 } else {
@@ -77,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ) {
                 if (container2.children.length < 9) {
                     const newBlock = draggable.cloneNode(true); // Клонируем с содержимым  
-                    newBlock.style.backgroundColor = getRandomHexColor();
                     newBlock.style.position = 'absolute';
                     newBlock.style.left = `${rectDraggable.left - rectContainer2.left}px`; // Устанавливаем позицию относительно контейнера 
                     newBlock.style.top = `${rectDraggable.top - rectContainer2.top}px`; // Устанавливаем позицию относительно контейнера 
@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Сброс флага перетаскивания  
             isDragging = false;
             draggable.style.cursor = 'grab';
+            draggable.style.backgroundColor = getRandomHexColor();
             // Возврат на исходное место 
             draggable.style.position = 'absolute';
             draggable.style.left = `${startPosition.x}px`;
