@@ -73,15 +73,46 @@ body {
 
 /* РИСОВАЛОЧКА */
 
-.canvasBox{
+.header{
     margin-top: 20px;
+    text-align: center;
+}
+
+.canvasBox{
     display: flex;
+    justify-content: center;
+}
+
+.drawwingBox{
+    position: relative;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
 canvas {
     border-radius: 10px;
     background-color: #fff;
+}
+
+#colorPicker {
+    position: absolute;
+    left: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.color-button{
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    border-radius: 6px;
 }
 
 
