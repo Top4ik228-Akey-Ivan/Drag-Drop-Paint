@@ -106,4 +106,59 @@ document.addEventListener('DOMContentLoaded', () => {
     draggable.addEventListener('touchstart', startDragging);
     document.addEventListener('touchmove', dragElement);
     document.addEventListener('touchend', stopDragging);
+
+    ///////////////////// РИСОВАЛОЧКА /////////////////////
+
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Устанавливаем размер канваса
+    canvas.width = window.innerWidth / 2;
+    canvas.height = window.innerHeight / 3;
+
+    // Переменные для рисования
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Функция начала рисования
+    function startDrawing(e) {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY]; // Сохраняем начальные координаты
+    }
+
+    // Функция рисования
+    function draw(e) {
+        if (!isDrawing) return; // Если не рисуем, ничего не делаем
+
+        ctx.strokeStyle = '#000'; // Цвет линии
+        ctx.lineWidth = 2; // Толщина линии
+        ctx.lineJoin = 'round'; // Скругление углов
+        ctx.lineCap = 'round'; // Скругление концов
+
+        ctx.beginPath(); // Начинаем новый путь
+        ctx.moveTo(lastX, lastY); // Перемещаемся к последней позиции
+        ctx.lineTo(e.offsetX, e.offsetY); // Рисуем линию до новой позиции
+        ctx.stroke(); // Применяем рисование
+
+        [lastX, lastY] = [e.offsetX, e.offsetY]; // Обновляем последние координаты
+    }
+
+    // Функция окончания рисования
+    function stopDrawing() {
+        isDrawing = false;
+    }
+
+    // Слушаем события мыши
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    // Адаптация под изменение размера окна
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth / 2;
+        canvas.height = window.innerHeight / 3;
+    });
+
 });

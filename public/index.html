@@ -1,32 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Перетаскивание</title>
-    <script src="/static/index.js"></script>
-    <script src="/static/animation.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
-</head>
-<body>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перетаскивание</title> 
+    <link rel="stylesheet" type="text/css" href="/static/styles.css"> 
+    <script src="/static/index.js" defer></script> 
+    <script src="/static/animation.js" defer></script> 
+</head> 
+<body> 
 
+    <!-- Блок для снежинок -->
+    <div class="snowFlakes"></div> 
 
-    <div class="snowFlakes">
-        <div class="snowFlake"></div>
+    <div class="main"> 
+        <div> 
+            <p>Контейнер 1</p> 
+            <div id="container1" class="container"></div> 
+        </div> 
+        <div> 
+            <p>Контейнер 2</p> 
+            <div id="container2" class="container"></div> 
+        </div> 
+    </div> 
+     
+    <div id="box" class="box"> 
+        <div id="draggable" class="draggable">Перетащи меня</div> 
+    </div> 
+
+    <div class="canvasBox">
+        <canvas id="drawingCanvas"></canvas>
     </div>
 
-
-    <div class="main">
-        <div>
-            <p>Контейнер 1</p>
-            <div id="container1" class="container"></div>
-        </div>
-        <div>
-            <p>Контейнер 2</p>
-            <div id="container2" class="container"></div>
-        </div>
-    </div>
-    
-    <div id="box" class="box">
-        <div id="draggable" class="draggable">Перетащи меня</div>
-    </div>
-</body>
+</body> 
 </html>

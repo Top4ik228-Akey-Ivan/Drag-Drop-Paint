@@ -1,76 +1,87 @@
-* {
-    margin: 0;
-    padding: 0;
-    /* box-sizing: border-box; */
-}
-body{
-    background: linear-gradient(to right, #d08bbd, #ebb987);
-}
+* { 
+    margin: 0; 
+    padding: 0; 
+} 
 
-.main {
-    width: 100%;
+body { 
+    background: linear-gradient(to right, #d08bbd, #ebb987); 
+    position: relative; 
+} 
 
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
-}
+.main { 
+    width: 100%; 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    margin: 0; 
+} 
 
-.box{
-    width: 100%;
+.box { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px; 
+} 
+
+.draggable { 
+    width: 100px; 
+    height: 100px; 
+    cursor: grab; 
+    text-align: center; 
+    box-sizing: border-box; 
+    border-radius: 10px; 
+} 
+
+.container { 
+    width: 300px; 
+    height: 300px; 
+    border: 2px solid black; 
+    position: relative; 
+    border-radius: 10px; 
+} 
+
+#container1 { 
+    display: grid; 
+    grid-template-columns: 100px 100px 100px; 
+    grid-template-rows: 100px 100px 100px; 
+} 
+
+/* animation */ 
+  
+.snowFlakes {  
+    position: absolute;  
+    top: 0;  
+    left: 0; 
+    right: 0; 
+    bottom: 0; /* Занимает всю высоту родителя */
+    height: 100%;
+    pointer-events: none;  
+    z-index: 1;  
+}  
+  
+.snowFlake {  
+    position: absolute;  
+    font-size: 16px;  
+    color: white;  
+    animation: fall linear infinite;  
+}  
+  
+@keyframes fall {  
+    0% { transform: translateY(0); } /* Начинаем с текущей позиции */ 
+    100% { transform: translateY(95vh); } /* Падаем до нижней границы блока snowFlakes */ 
+} 
+
+/* РИСОВАЛОЧКА */
+
+.canvasBox{
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-
-    margin-top: 100px;
 }
 
-.draggable {
-    width: 100px;
-    height: 100px;
-    background-color: rgb(51, 176, 155);
-    cursor: grab;
-    text-align: center;
-
-    box-sizing: border-box;
+canvas {
     border-radius: 10px;
+    background-color: #fff;
 }
 
-.container {
-    width: 300px;
-    height: 300px;
-    border: 2px solid black;
-    margin-bottom: 20px;
-    position: relative;
 
-    border-radius: 10px;
-}
-
-#container1{
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px;
-}
-
-/* animation */
- 
-.snowFlakes { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    pointer-events: none; 
-    width: 100%; 
-    height: 100vh;
-    z-index: 1; 
-} 
- 
-.snowFlake { 
-    position: absolute; 
-    font-size: 16px; 
-    color: white; 
-    animation: fall linear infinite; 
-} 
- 
-@keyframes fall { 
-    0% { transform: translateY(0); } /* Начинаем с текущей позиции */
-    100% { transform: translateY(95vh); } /* Падаем до нижней границы */
-}
