@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
-    function getRandomHexColor() {
-        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-        return `#${randomColor.padStart(6, '0')}`;
-    }
+function getRandomHexColor() {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return `#${randomColor.padStart(6, '0')}`;
+}
 
+document.addEventListener('DOMContentLoaded', () => {
     const draggable = document.getElementById('draggable');
     const container1 = document.getElementById('container1');
     const container2 = document.getElementById('container2');
