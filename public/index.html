@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/styles.css"> 
     <script src="/static/index.js" defer></script> 
     <script src="/static/animation.js" defer></script> 
+    <script src="/static/drawing.js" defer></script> 
 </head> 
 <body> 
 
@@ -18,6 +19,9 @@
             <p>Контейнер 1</p> 
             <div id="container1" class="container"></div> 
         </div> 
+
+        <div id="draggable" class="draggable">Перетащи меня</div> 
+
         <div> 
             <p>Контейнер 2</p> 
             <div id="container2" class="container"></div> 
@@ -25,7 +29,7 @@
     </div> 
      
     <div id="box" class="box"> 
-        <div id="draggable" class="draggable">Перетащи меня</div> 
+        
     </div> 
 
     <h3 class="header">Рисовалочка</h3>
@@ -49,6 +53,14 @@
                 </button>
             </div>
             <canvas id="drawingCanvas"></canvas>
+            <div id="shapePicker">
+                <button class="shape-button" data-shape="line">-</button>
+                <button class="shape-button" data-shape="rectangle">□</button>
+                <button class="shape-button" data-shape="square">■</button>
+                <button class="shape-button" data-shape="circle">○</button>
+                <button class="shape-button" data-shape="triangle">△</button>
+                <button class="shape-button" id="clear">*</button>
+            </div>
         </div>
     </div>
 

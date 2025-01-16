@@ -74,7 +74,7 @@ body {
 /* РИСОВАЛОЧКА */
 
 .header{
-    margin-top: 20px;
+    margin: 20px 0;
     text-align: center;
 }
 
@@ -85,7 +85,6 @@ body {
 
 .drawwingBox{
     position: relative;
-    border: 2px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,23 +95,34 @@ canvas {
     background-color: #fff;
 }
 
-#colorPicker {
+#colorPicker, #shapePicker{
     position: absolute;
-    left: 10px;
 
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.color-button{
+#colorPicker{
+    left: 10px;
+}
+#shapePicker{
+    right: 10px;
+}
+
+.color-button, .shape-button{
     width: 20px;
     height: 20px;
     outline: none;
     border: none;
     cursor: pointer;
 
+    font-size: 24px;
     border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
