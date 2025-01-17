@@ -10,6 +10,8 @@ canvas.height = window.innerHeight / 3;
 let isDrawing = false;
 let startX = 0;
 let startY = 0;
+let curX;
+let curY;
 let currentColor = 'black'; // Начальный цвет линии
 let currentShape = 'line'; // Начальная фигура 
 const shapes = []; // Массив для хранения фигур
@@ -41,6 +43,7 @@ function draw(e) {
     if (!isDrawing) return;
 
     const { x, y } = getCoordinates(e);
+    [curX, curY] = [x, y]
 
     if (currentShape === 'line') {
         drawLine(x, y)
@@ -106,30 +109,30 @@ function redrawShapes() {
         ctx.fillStyle = color; // Установка цвета фигуры
         ctx.strokeStyle = color; // Установка цвета линии
 
-        switch (shape) { 
-            case 'rectangle': 
-                const width = endX - startX; 
-                const height = endY - startY; 
-                ctx.fillRect(startX, startY, width, height); 
-                break; 
-            case 'square': 
-                const size = Math.min(endX - startX, endY - startY); 
-                ctx.fillRect(startX, startY, size, size); 
-                break; 
-            case 'circle': 
-                const radius = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2) / 2; 
-                ctx.beginPath(); 
-                ctx.arc(startX + radius, startY + radius, radius, 0, Math.PI * 2); 
-                ctx.fill(); 
-                break; 
-            case 'triangle': 
-                ctx.beginPath(); 
-                ctx.moveTo(startX, startY); 
-                ctx.lineTo(endX, startY); 
-                ctx.lineTo((startX + endX) / 2, endY); 
-                ctx.closePath(); 
-                ctx.fill(); 
-                break; 
+        switch (shape) {
+            case 'rectangle':
+                const width = endX - startX;
+                const height = endY - startY;
+                ctx.fillRect(startX, startY, width, height);
+                break;
+            case 'square':
+                const size = Math.min(endX - startX, endY - startY);
+                ctx.fillRect(startX, startY, size, size);
+                break;
+            case 'circle':
+                const radius = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2) / 2;
+                ctx.beginPath();
+                ctx.arc(startX + radius, startY + radius, radius, 0, Math.PI * 2);
+                ctx.fill();
+                break;
+            case 'triangle':
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, startY);
+                ctx.lineTo((startX + endX) / 2, endY);
+                ctx.closePath();
+                ctx.fill();
+                break;
             case 'line':
                 ctx.beginPath();
                 ctx.moveTo(startX, startY);
@@ -144,11 +147,9 @@ function stopDrawing(e) {
     if (!isDrawing) return;
     isDrawing = false;
 
-    const { x, y } = getCoordinates(e);
     if (currentShape !== 'line') {
-        shapes.push({ shape: currentShape, startX, startY, endX: x, endY: y, color: currentColor });
+        shapes.push({ shape: currentShape, startX, startY, endX: curX, endY: curY, color: currentColor });
     }
-    console.log(shapes)
 }
 
 function clear() {
